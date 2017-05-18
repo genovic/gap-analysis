@@ -16,6 +16,8 @@ Takes as parameters:
 - threshold coverage e.g. 20x
 - minimum gap size
 
+*Find gap at position*
+
 ### Suggested graphs ###
 
 * Stability vs number of samples
