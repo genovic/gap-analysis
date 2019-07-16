@@ -69,7 +69,7 @@ chr1    12099   12227   DDX11L1 6       160
         if len(stats['found']) >= len(positions):
             break
 
-if __name__ == '__main__':
+def main():
     sys.stderr.write('starting...\n')
     parser = argparse.ArgumentParser(description='Find gaps')
     parser.add_argument('--coverage', nargs='+', required=True, help='coverage files (.gz)')
@@ -77,3 +77,6 @@ if __name__ == '__main__':
     args = parser.parse_args()
     positions = set([int(p) for p in args.position])
     find_coverage(args.coverage, sys.stdout, positions)
+
+if __name__ == '__main__':
+    main()

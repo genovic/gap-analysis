@@ -1,28 +1,65 @@
+# Gap assessment
 
-## Gap assessment ##
+## Installation
 
-### Synopsis ###
-Assess the number of gaps generated when the following parameters are varied:
-* number of samples
-* coverage value to consider relative to the mean (+/- SD)
-* effect of using the median instead of the mean
-* coverage threshold (e.g. 20x)
+* Run:
+    ```
+    git clone git@github.com:genovic/gap-analysis.git
+    cd gap-analysis
+    python3 -m venv venv
+    source venv/bin/activate
+    pip install .
+    ```
+    
+* The three commands will now be available:
+   * `find_gaps`
+   * `find_coverage`
+   * `filter_genes`
 
-### Usage ###
+## Usage
 
-*Find Gaps*
-Takes as parameters:
-- coverage files (e.g. x.cov.gz or x.exome.gz)
-- threshold coverage e.g. 20x
-- minimum gap size
+### Find Gaps
 
-*Find gap at position*
+```
+usage: find_gaps [-h] --coverage COVERAGE [COVERAGE ...]
+                 [--threshold THRESHOLD] [--sd SD] [--min_width MIN_WIDTH]
+                 [--stability] [--max_lines MAX_LINES] [--filter FILTER]
 
-### Suggested graphs ###
+Find gaps
 
-* Stability vs number of samples
-* Histogram of gap lengths
-* % bases affected vs threshold
-* number of gaps vs threshold
-* % bases affected vs SD
-* number of gaps vs SD
+optional arguments:
+  -h, --help            show this help message and exit
+  --coverage COVERAGE [COVERAGE ...]
+                        coverage files (.gz)
+  --threshold THRESHOLD
+                        consider a gap if mean coverage falls below this
+  --sd SD               offset mean by this proportion of the standard
+                        deviation when considering if a base is a gap
+  --min_width MIN_WIDTH
+                        only report gaps if the length is at least this
+  --stability           calculate stability as more samples added
+  --max_lines MAX_LINES
+                        stop after reading this many lines
+  --filter FILTER       bed file specifying parts of the genome to ignore
+```
+
+## Find Coverage
+
+```
+usage: find_coverage [-h] --coverage COVERAGE [COVERAGE ...] --position
+                     POSITION [POSITION ...]
+
+Find gaps
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --coverage COVERAGE [COVERAGE ...]
+                        coverage files (.gz)
+  --position POSITION [POSITION ...]
+                        position to check
+```
+
+## Filter Genes
+```
+usage: filter_genes gene_list.txt < bed_file > filtered_bed_file
+```

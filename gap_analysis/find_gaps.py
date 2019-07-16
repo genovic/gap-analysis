@@ -138,7 +138,7 @@ def build_filter(in_fh):
     sys.stderr.write('building master gap filter: done')
     return result
 
-if __name__ == '__main__':
+def main():
     sys.stderr.write('starting...\n')
     parser = argparse.ArgumentParser(description='Find gaps')
     parser.add_argument('--coverage', nargs='+', required=True, help='coverage files (.gz)')
@@ -155,3 +155,6 @@ if __name__ == '__main__':
     else:
         gap_filter = collections.defaultdict(set)
     find_gaps(args.coverage, args.threshold, args.sd, sys.stdout, args.stability, args.max_lines, args.min_width, gap_filter)
+
+if __name__ == '__main__':
+    main()
